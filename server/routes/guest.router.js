@@ -37,5 +37,21 @@ router.post('/', (req, res) => {
         })
 })
 
+router.delete('/:id', (req, res) => {
+    const sqlQueryText = `DELETE FROM "guests"
+        WHERE "id" = $1;`;
+    
+    const sqlValues = [req.params.id];
+
+    pool.query(sqlQueryText, sqlValues)
+    .then((result) => {
+        console.log("Deleted a guest");
+        res.sendStatus(201);
+    }).catch((error) => {
+        console.log("Error in DELETE:", error);
+        res.sendStatus(500);
+    })
+})
+
 
 module.exports = router;
