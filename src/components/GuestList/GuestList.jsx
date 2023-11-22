@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Guest from '../Guest/Guest'
 
 function GuestList({guestList, getGuests}){
 
@@ -26,13 +27,7 @@ function GuestList({guestList, getGuests}){
                 </thead>
                 <tbody>
                     {guestList.map(guest => (
-                        <tr key={guest.id}>
-                            <td>{guest.name}</td>
-                            <td>{String(guest.kidsMeal)}</td>
-                            <td>
-                                <button onClick={() => deleteGuest(guest)}>🗑️</button>
-                            </td>
-                        </tr>
+                       <Guest key={guest.id} guest={guest} deleteGuest={deleteGuest} />
                     ))}
                 </tbody>
             </table>
